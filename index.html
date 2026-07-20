@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Your Name] — Automation Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B2545;
+    --paper:#EDF3F8;
+    --panel:#FFFFFF;
+    --amber:#E8871E;
+    --teal:#1B7A7A;
+    --slate:#5C7189;
+    --line: rgba(11,37,69,0.14);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:700; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(237,243,248,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .brand{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:0.95rem; display:flex; align-items:center; gap:8px;}
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--amber); box-shadow:0 0 0 3px rgba(232,135,30,0.18);}
+  .navlinks{display:flex; gap:28px; font-size:0.9rem;}
+  .navlinks a{text-decoration:none; color:var(--slate); font-weight:500; transition:color .15s;}
+  .navlinks a:hover{color:var(--ink);}
+  .navlinks a:focus-visible, a:focus-visible{outline:2px solid var(--amber); outline-offset:3px;}
+
+  /* HERO */
+  .hero{padding:90px 0 60px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--teal); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:20px; height:1px; background:var(--teal);}
+  .hero h1{font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.08; max-width:820px;}
+  .hero h1 span{color:var(--amber);}
+  .hero p.lede{margin-top:22px; max-width:620px; color:var(--slate); font-size:1.08rem;}
+  .hero-cta{display:flex; gap:14px; margin-top:30px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; font-weight:500;
+    padding:12px 20px; border-radius:var(--radius); text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    border:1px solid var(--ink);
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 6px 0 0 var(--amber);}
+  .btn-ghost{background:transparent; color:var(--ink);}
+  .btn-ghost:hover{transform:translateY(-2px); box-shadow:0 6px 0 0 var(--slate);}
+
+  /* PIPELINE DIAGRAM - signature element */
+  .pipeline{margin-top:64px; overflow-x:auto; padding-bottom:8px;}
+  .pipeline-track{display:flex; align-items:center; min-width:680px;}
+  .node{
+    background:var(--panel); border:1.5px solid var(--ink); border-radius:var(--radius);
+    padding:14px 18px; min-width:130px; text-align:center; flex-shrink:0;
+    box-shadow:3px 3px 0 var(--line);
+  }
+  .node .n{font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--teal); display:block; margin-bottom:4px;}
+  .node .t{font-weight:600; font-size:0.88rem;}
+  .connector{flex:0 0 42px; height:2px; background:repeating-linear-gradient(90deg, var(--slate) 0 6px, transparent 6px 11px); position:relative;}
+  .connector::after{
+    content:""; position:absolute; right:0; top:50%; transform:translateY(-50%);
+    border-style:solid; border-width:4px 0 4px 7px; border-color:transparent transparent transparent var(--slate);
+  }
+  .node.amber{border-color:var(--amber);}
+  .node.amber .n{color:var(--amber);}
+
+  section{padding:64px 0; border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-num{font-family:'IBM Plex Mono', monospace; color:var(--amber); font-size:0.85rem;}
+  .section-head h2{font-size:1.7rem;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns: 1.3fr 1fr; gap:48px;}
+  .about-grid p{color:var(--slate); margin-bottom:14px;}
+  .about-grid p strong{color:var(--ink);}
+  .fact-panel{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .fact-panel dt{font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal); margin-top:16px;}
+  .fact-panel dt:first-child{margin-top:0;}
+  .fact-panel dd{font-weight:600; margin-top:2px;}
+
+  /* SKILLS */
+  .skill-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .skill-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:20px;}
+  .skill-card h3{font-size:0.95rem; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+  .skill-card h3::before{content:""; width:6px; height:6px; background:var(--amber); border-radius:50%;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; background:var(--paper); border:1px solid var(--line); padding:5px 10px; border-radius:var(--radius); color:var(--ink);}
+
+  /* PROJECTS */
+  .project{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; margin-bottom:24px;
+  }
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap;}
+  .project h3{font-size:1.25rem;}
+  .project .tagline{color:var(--slate); margin-top:6px; max-width:560px;}
+  .project-link{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; text-decoration:none;
+    border:1px solid var(--ink); padding:8px 14px; border-radius:var(--radius); white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  .project-link:hover{background:var(--ink); color:var(--paper);}
+  .mini-flow{display:flex; align-items:center; gap:6px; margin-top:20px; flex-wrap:wrap;}
+  .mini-step{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; background:var(--paper);
+    border:1px solid var(--line); border-radius:20px; padding:5px 12px; color:var(--slate);
+  }
+  .mini-arrow{color:var(--slate); font-size:0.8rem;}
+  .impact-row{display:flex; gap:24px; margin-top:20px; flex-wrap:wrap; border-top:1px dashed var(--line); padding-top:16px;}
+  .impact-item{font-size:0.85rem; color:var(--slate); max-width:220px;}
+  .impact-item::before{content:"→ "; color:var(--amber); font-weight:700;}
+
+  /* EXPERIENCE */
+  .timeline{position:relative; padding-left:26px;}
+  .timeline::before{content:""; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line);}
+  .tl-item{position:relative; padding-bottom:34px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-26px; top:5px; width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:2.5px solid var(--amber);
+  }
+  .tl-role{font-weight:600; font-size:1.02rem;}
+  .tl-meta{font-family:'IBM Plex Mono', monospace; font-size:0.76rem; color:var(--teal); margin-top:2px;}
+  .tl-desc{color:var(--slate); margin-top:8px; font-size:0.94rem; max-width:640px;}
+
+  /* CONTACT */
+  .contact-panel{
+    background:var(--ink); color:var(--paper); border-radius:var(--radius);
+    padding:44px; text-align:center;
+  }
+  .contact-panel h2{color:var(--paper); font-size:1.8rem;}
+  .contact-panel p{color:#B9C7DA; margin-top:10px;}
+  .contact-links{display:flex; justify-content:center; gap:16px; margin-top:26px; flex-wrap:wrap;}
+  .contact-links a{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; text-decoration:none; color:var(--paper);
+    border:1px solid rgba(237,243,248,0.35); padding:10px 18px; border-radius:var(--radius);
+    transition:border-color .15s, background .15s;
+  }
+  .contact-links a:hover{border-color:var(--amber); background:rgba(232,135,30,0.12);}
+
+  footer{padding:26px 0; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--slate);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+    .skill-groups{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .btn:hover{transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand"><span class="dot"></span>[Your Name]</div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero wrap" style="border-top:none;">
+  <div class="eyebrow">Automation Developer · Power Platform &amp; RPA</div>
+  <h1>I turn manual business processes into <span>governed, automated workflows.</span></h1>
+  <p class="lede">8 years designing, building, and maintaining enterprise automation across Microsoft Power Platform and Kofax RPA — from citizen-developer enablement to end-to-end compliance verification.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#projects">View projects →</a>
+    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+  </div>
+
+  <div class="pipeline" aria-hidden="true">
+    <div class="pipeline-track">
+      <div class="node"><span class="n">01 · TRIGGER</span><span class="t">Manual Process</span></div>
+      <div class="connector"></div>
+      <div class="node"><span class="n">02 · DESIGN</span><span class="t">Workflow Built</span></div>
+      <div class="connector"></div>
+      <div class="node amber"><span class="n">03 · GOVERN</span><span class="t">Controls Applied</span></div>
+      <div class="connector"></div>
+      <div class="node"><span class="n">04 · RUN</span><span class="t">Automated</span></div>
+      <div class="connector"></div>
+      <div class="node"><span class="n">05 · OUTPUT</span><span class="t">Scaled Impact</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>About</h2></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm an <strong>Automation Developer</strong> with 8 years of hands-on experience designing, building, and maintaining enterprise automation solutions using <strong>Microsoft Power Platform</strong> and <strong>Kofax RPA</strong>.</p>
+        <p>I specialize in workflow automation, business process optimization, and governance, turning business requirements into scalable solutions through process analysis, design, development, and continuous improvement.</p>
+        <p>Strong track record of troubleshooting, cross-functional collaboration, and providing ongoing support for enterprise automation initiatives — with recent work spanning citizen-developer enablement platforms, onboarding governance workflows, and regulated compliance automation.</p>
+      </div>
+      <dl class="fact-panel">
+        <dt>Based in</dt><dd>Finland</dd>
+        <dt>Experience</dt><dd>8 years</dd>
+        <dt>Education</dt><dd>M.Sc. International Business Management — TAMK, Finland (2024–2025)</dd>
+        <dt>Core platforms</dt><dd>Power Automate · Power Apps · Kofax RPA</dd>
+        <dt>Currently</dt><dd>Deepening software design fundamentals; exploring AI-enabled RPA</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Skills &amp; Tools</h2></div>
+    <div class="skill-groups reveal">
+      <div class="skill-card">
+        <h3>Automation &amp; Low-Code</h3>
+        <div class="tag-row">
+          <span class="tag">Power Automate</span>
+          <span class="tag">Power Apps Canvas</span>
+          <span class="tag">Kofax RPA</span>
+          <span class="tag">Power Fx</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Programming &amp; Data</h3>
+        <div class="tag-row">
+          <span class="tag">SQL</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">JSON</span>
+          <span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>DevOps &amp; Tools</h3>
+        <div class="tag-row">
+          <span class="tag">Git</span>
+          <span class="tag">Bitbucket</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Confluence</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">Postman</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2>Featured Projects</h2></div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div>
+          <h3>🌐 Power Platform Enablement Hub</h3>
+          <p class="tagline">A centralized Power Apps Canvas app supporting makers through their entire Power Platform journey.</p>
+        </div>
+        <a class="project-link" href="https://github.com/Suganyaravi-pro/power-platform-enablement-hub" target="_blank" rel="noopener">View write-up ↗</a>
+      </div>
+      <div class="mini-flow" aria-hidden="true">
+        <span class="mini-step">Dashboard</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Certifications</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Environment</span><span class="mini-arrow">→</span>
+        <span class="mini-step">License</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Guidelines</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Support</span>
+      </div>
+      <div class="impact-row">
+        <div class="impact-item">Simplified access to enablement resources org-wide</div>
+        <div class="impact-item">Self-service license requests via MyAccess</div>
+        <div class="impact-item">Reduced onboarding time with a single maker hub</div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div>
+          <h3>🔐 Maker Onboarding &amp; Governance Workflow</h3>
+          <p class="tagline">A Power Automate workflow enforcing mandatory assessment completion before granting Advanced Citizen Developer access.</p>
+        </div>
+        <a class="project-link" href="https://github.com/Suganyaravi-pro/maker-onboarding-governance-workflow" target="_blank" rel="noopener">View write-up ↗</a>
+      </div>
+      <div class="mini-flow" aria-hidden="true">
+        <span class="mini-step">Assessment</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Score Check</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Certificate</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Role Request</span><span class="mini-arrow">→</span>
+        <span class="mini-step">2-Stage Approval</span>
+      </div>
+      <div class="impact-row">
+        <div class="impact-item">Introduced governance where none existed before</div>
+        <div class="impact-item">Automated certificate generation &amp; delivery</div>
+        <div class="impact-item">Streamlined approver notifications end to end</div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div>
+          <h3>🕵️ UBO Verification Automation</h3>
+          <p class="tagline">A Kofax RPA solution automating Ultimate Beneficial Owner verification for customer due diligence.</p>
+        </div>
+        <a class="project-link" href="https://github.com/Suganyaravi-pro/dfc-odd-ubo-verification" target="_blank" rel="noopener">View write-up ↗</a>
+      </div>
+      <div class="mini-flow" aria-hidden="true">
+        <span class="mini-step">Extract</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Validate</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Link Records</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Registry Check</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Report &amp; File</span>
+      </div>
+      <div class="impact-row">
+        <div class="impact-item">Automated a multi-system compliance process</div>
+        <div class="impact-item">Reconciled UBO data mismatches automatically</div>
+        <div class="impact-item">Streamlined document handling &amp; reporting</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2>Experience</h2></div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-role">Automation Developer — KONE, Finland</div>
+        <div class="tl-meta">May 2025 – Aug 2025</div>
+        <p class="tl-desc">Designed, developed, deployed, and maintained Power Platform solutions using Power Apps Canvas and Power Automate, including cloud flows automating approvals and notifications.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Business Process Lead — Tata Consultancy Services, India</div>
+        <div class="tl-meta">Mar 2023 – Sep 2024</div>
+        <p class="tl-desc">Designed and maintained Kofax RPA bots automating business-critical processes, including CDD, KYC, and verification workflows with data extraction, validation, and exception handling.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Business Process Lead — WNS Global Services (Client: First Abu Dhabi Bank)</div>
+        <div class="tl-meta">Apr 2021 – Mar 2023</div>
+        <p class="tl-desc">Built automation solutions for data validation and business process automation, leveraging AI-enabled tools and collaborating cross-functionally with business stakeholders.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Senior Analyst — NatWest Group, India</div>
+        <div class="tl-meta">Dec 2016 – Apr 2021</div>
+        <p class="tl-desc">Automated repetitive tasks through scalable workflows, optimized data pipelines, and managed end-to-end delivery of automation solutions from design through production support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-panel reveal">
+      <h2>Let's connect</h2>
+      <p>Automation developer, low-code enthusiast, exploring the transition into deeper software fundamentals. Always happy to talk governance, workflow design, or automation architecture.</p>
+      <div class="contact-links">
+        <a href="mailto:your.email@example.com">Email</a>
+        <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/Suganyaravi-pro" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>Built with Power Platform experience — and one small Python project on the way.</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
