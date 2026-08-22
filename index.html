@@ -224,7 +224,7 @@
 <section class="hero wrap" style="border-top:none;">
   <div class="eyebrow">Automation Developer · Power Platform &amp; RPA · DevOps</div>
   <h1>I turn manual business processes into <span>governed, automated workflows.</span></h1>
-  <p class="lede">8 years designing, building, and maintaining enterprise automation across Microsoft Power Platform and Kofax RPA from citizen-developer enablement to end-to-end compliance verification, backed by CI/CD, incident, and change management practices.</p>
+  <p class="lede">8 years designing, building, and maintaining enterprise automation across Microsoft Power Platform and Kofax RPA from citizen-developer enablement to end-to-end compliance verification, backed by CI/CD, incident, and change management practices. Currently building hands-on Kubernetes, Kafka, and Terraform pipelines to deepen my DevOps fundamentals.</p>
   <div class="hero-cta">
     <a class="btn btn-primary" href="#projects">View projects →</a>
     <a class="btn btn-ghost" href="#contact">Get in touch</a>
@@ -253,13 +253,14 @@
         <p>I'm an <strong>Automation Developer</strong> with 8 years of hands-on experience designing, building, and maintaining enterprise automation solutions using <strong>Microsoft Power Platform</strong> and <strong>Kofax RPA</strong>.</p>
         <p>I specialize in workflow automation, business process optimization, and governance, turning business requirements into scalable solutions through process analysis, design, development, and continuous improvement.</p>
         <p>Strong track record of troubleshooting, cross-functional collaboration, and providing ongoing support for enterprise automation initiatives with recent work spanning citizen-developer enablement platforms, onboarding governance workflows, regulated compliance automation, and hands-on DevOps practice including CI/CD pipelines, ALM, incident management, and change management.</p>
+        <p>Outside of Power Platform work, I've been building a series of self-directed DevOps projects from the ground up, covering Kubernetes, Kafka, Helm, Terraform, Jenkins CI/CD, and the Prometheus/Grafana/Splunk monitoring stack, to strengthen the infrastructure and platform engineering side of my background.</p>
       </div>
       <dl class="fact-panel">
         <dt>Based in</dt><dd>Finland</dd>
         <dt>Experience</dt><dd>8 years</dd>
         <dt>Education</dt><dd>MBA, International Business Management — TAMK, Finland (2024–2025)</dd>
         <dt>Core platforms</dt><dd>Power Automate · Power Apps · Kofax RPA</dd>
-        <dt>DevOps practice</dt><dd>CI/CD · ALM · Incident &amp; Change Management</dd>
+        <dt>DevOps practice</dt><dd>Kubernetes · Kafka · Terraform · Jenkins CI/CD</dd>
         <dt>Currently</dt><dd>Deepening software design fundamentals; exploring AI-enabled RPA</dd>
       </dl>
     </div>
@@ -269,6 +270,58 @@
 <section id="projects">
   <div class="wrap">
     <div class="section-head"><span class="section-num">02</span><h2>Featured Projects</h2></div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div>
+          <h3>🏦 Cross-Border Nordic Payment Fraud Monitor</h3>
+          <p class="tagline">A real-time fraud detection pipeline simulating payment transactions across Nordic countries, scoring them against fraud rules, and deploying the full stack through a self-built CI/CD pipeline onto Kubernetes.</p>
+        </div>
+        <a class="project-link" href="https://github.com/Suganyaravi-pro/fraud-monitor" target="_blank" rel="noopener">View repo &amp; code ↗</a>
+      </div>
+      <div class="mini-flow" aria-hidden="true">
+        <span class="mini-step">Producer</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Kafka</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Consumer/Scorer</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Postgres</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Docker</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Kubernetes + Helm</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Terraform</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Jenkins CI/CD</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Prometheus/Grafana</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Splunk</span>
+      </div>
+      <div class="impact-row">
+        <div class="impact-item">End-to-end CI/CD: a GitHub push auto-triggers Jenkins to build, load, and redeploy via Helm</div>
+        <div class="impact-item">Rule-based fraud scoring (high-risk country, cross-border, large amount) surfaced as live Grafana dashboards</div>
+        <div class="impact-item">Structured fraud case logs streamed to Splunk for investigator-style search</div>
+        <div class="impact-item">Full infrastructure-as-code cluster provisioning via Terraform</div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div>
+          <h3>📝 DevOps Foundations (Notes API)</h3>
+          <p class="tagline">A small Flask notes API used as a deliberately simple base for learning the DevOps toolchain layer by layer: Docker, Kubernetes, Terraform, AWS, Vault, and CI/CD.</p>
+        </div>
+        <a class="project-link" href="https://github.com/Suganyaravi-pro/devops-foundations" target="_blank" rel="noopener">View repo &amp; code ↗</a>
+      </div>
+      <div class="mini-flow" aria-hidden="true">
+        <span class="mini-step">Flask App</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Docker</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Kubernetes</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Terraform</span><span class="mini-arrow">→</span>
+        <span class="mini-step">AWS</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Vault</span><span class="mini-arrow">→</span>
+        <span class="mini-step">Jenkins CI/CD</span>
+      </div>
+      <div class="impact-row">
+        <div class="impact-item">4-stage Jenkins pipeline: checkout, test, build, deploy</div>
+        <div class="impact-item">Used Vault to manage real cluster credentials, removing kubeconfig files from disk</div>
+        <div class="impact-item">Deliberately trivial app so the infrastructure layer stays the focus</div>
+      </div>
+    </div>
 
     <div class="project reveal">
       <div class="project-top">
@@ -409,8 +462,21 @@
           <span class="tag">SQL</span>
           <span class="tag">JavaScript</span>
           <span class="tag">Python</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">SQLAlchemy</span>
+          <span class="tag">PostgreSQL</span>
           <span class="tag">JSON</span>
           <span class="tag">HTML</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Platform &amp; Infrastructure</h3>
+        <div class="tag-row">
+          <span class="tag">Docker</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Helm</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">Apache Kafka</span>
         </div>
       </div>
       <div class="skill-card">
@@ -425,8 +491,6 @@
           <span class="tag">Confluence</span>
           <span class="tag">ServiceNow</span>
           <span class="tag">SharePoint</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Kubernetes</span>
           <span class="tag">PowerShell</span>
           <span class="tag">Postman</span>
         </div>
@@ -437,6 +501,7 @@
           <span class="tag">Grafana</span>
           <span class="tag">Prometheus</span>
           <span class="tag">Alertmanager</span>
+          <span class="tag">Splunk</span>
         </div>
       </div>
     </div>
@@ -457,7 +522,7 @@
   </div>
 </section>
 
-<footer>Built with Power Platform experience and one hands-on Kafka/Kubernetes project along the way.</footer>
+<footer>Built with Power Platform experience and a growing set of hands-on Kubernetes, Kafka, and Terraform projects along the way.</footer>
 
 </div>
 
